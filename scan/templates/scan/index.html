@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Scanner</title>
+</head>
+<body>
+    <h1>Port Scanner</h1>
+    <form method="post">
+    	{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Scan</button>
+    </form>
+</body>
+</html>

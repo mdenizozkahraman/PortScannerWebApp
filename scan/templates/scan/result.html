@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Port Scanner Results</title>
+</head>
+<body>
+    <h1>Port Scanner Results for {{ ip_address }}</h1>
+    {% if open_ports %}
+        <p>Open Ports:</p>
+        <ul>
+            {% for port in open_ports %}
+                <li>{{ port }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <p>No open ports found.</p>
+    {% endif %}
+    <a href="{% url 'index' %}">Scan another IP</a>
+</body>
+</html>

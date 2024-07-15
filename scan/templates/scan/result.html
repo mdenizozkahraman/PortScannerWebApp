@@ -1,22 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Port Scanner Results</title>
+    <title>Port Scanner</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+        }
+        .container {
+            text-align: center;
+            background: #111;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #0f0;
+            margin-bottom: 20px;
+        }
+        label {
+            color: #0f0;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #0f0;
+            border-radius: 5px;
+            background-color: #222;
+            color: #0f0;
+        }
+        button {
+            background-color: #0f0;
+            color: #000;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00cc00;
+        }
+        footer {
+            position: fixed;
+            bottom: 10px;
+            font-size: 14px;
+            color: #0f0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Port Scanner Results for {{ ip_address }}</h1>
-    {% if open_ports %}
-        <p>Open Ports:</p>
-        <ul>
-            {% for port in open_ports %}
-                <li>{{ port }}</li>
-            {% endfor %}
-        </ul>
-    {% elif error %}
-        <p>{{ error }}</p>
-    {% else %}
-        <p>No open ports found.</p>
-    {% endif %}
-    <a href="{% url 'index' %}">Scan another IP</a>
+    <div class="container">
+        <h1>Port Scanner</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="id_ip_address">IP Address</label>
+            {{ form.ip_address }}
+            <label for="id_ports">Ports</label>
+            {{ form.ports }}
+            <button type="submit">Scan</button>
+        </form>
+    </div>
+    <footer>
+        created by Mehmet Deniz Özkahraman
+    </footer>
 </body>
 </html>
